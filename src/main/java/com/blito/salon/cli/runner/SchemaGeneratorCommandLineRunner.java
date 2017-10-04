@@ -23,13 +23,14 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter salon name");
-        String salonName = scanner.next();
+        String salonName = scanner.nextLine();
 
         Salon salon = new Salon(UUID.randomUUID().toString(),salonName);
 
         System.out.println("Please enter number of sections");
         Try<Integer> numberOfSectionsTry = Try.of(scanner::nextInt);
         while (numberOfSectionsTry.isFailure()) {
+            scanner.next();
             System.out.println("Please enter a number");
             numberOfSectionsTry = Try.of(scanner::nextInt);
         }
@@ -43,6 +44,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                     System.out.println("Specify number of rows");
                     Try<Integer> sectionNumberOfRowsTry = Try.of(scanner::nextInt);
                     while (sectionNumberOfRowsTry.isFailure()) {
+                        scanner.next();
                         System.out.println("Please enter a number");
                         sectionNumberOfRowsTry = Try.of(scanner::nextInt);
                     }
@@ -58,6 +60,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                                 System.out.println("Enter number of seats");
                                 Try<Integer> numberOfSeatsTry = Try.of(scanner::nextInt);
                                 while (numberOfSeatsTry.isFailure()) {
+                                    scanner.next();
                                     System.out.println("Please enter a number");
                                     numberOfSeatsTry = Try.of(scanner::nextInt);
                                 }
@@ -65,6 +68,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                                 System.out.println("Enter first seat starting number");
                                 Try<Integer> firstSeatStartingNumberTry = Try.of(scanner::nextInt);
                                 while (numberOfSeatsTry.isFailure()) {
+                                    scanner.next();
                                     System.out.println("Please enter a number");
                                     numberOfSeatsTry = Try.of(scanner::nextInt);
                                 }
