@@ -15,18 +15,28 @@ import java.util.List;
 public class Row extends AbstractBaseSalonEntity implements SalonComponent<Row> {
     @JsonIgnore
     private SalonComponent<Section> sectionSalonComponent;
+    private Direction direction;
     private Integer numberOfSeats;
     private Integer firstSeatStartingNumber;
     private Integer lastSeatEndingNumber;
     private List<Seat> seats;
 
-    public Row(String uid, String name, SalonComponent<Section> sectionSalonComponent, Integer numberOfSeats, Integer firstSeatStartingNumber, Integer lastSeatEndingNumber) {
+    public Row(String uid, String name, SalonComponent<Section> sectionSalonComponent, Integer numberOfSeats, Integer firstSeatStartingNumber, Integer lastSeatEndingNumber,Direction direction) {
         super(uid, name);
         this.sectionSalonComponent = sectionSalonComponent;
         this.numberOfSeats = numberOfSeats;
         this.firstSeatStartingNumber = firstSeatStartingNumber;
         this.lastSeatEndingNumber = lastSeatEndingNumber;
+        this.direction = direction;
         this.seats = new ArrayList<>();
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public SalonComponent<Section> getSectionSalonComponent() {

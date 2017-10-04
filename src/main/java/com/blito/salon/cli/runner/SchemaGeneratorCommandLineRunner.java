@@ -1,9 +1,6 @@
 package com.blito.salon.cli.runner;
 
-import com.blito.salon.common.Row;
-import com.blito.salon.common.Salon;
-import com.blito.salon.common.Seat;
-import com.blito.salon.common.Section;
+import com.blito.salon.common.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,15 +77,15 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                                         section,
                                         numberOfSeats,
                                         firstSeatStartingNumber,
-                                        lastSeatEndingNumber);
+                                        lastSeatEndingNumber, Direction.LTR);
 
                                 section.getRows().add(row);
 
                                 IntStream.range(firstSeatStartingNumber,lastSeatEndingNumber)
-                                        .forEach(seatNumber -> {
-                                            Seat seat = new Seat(UUID.randomUUID().toString(),String.valueOf(seatNumber),row);
-                                            row.getSeats().add(seat);
-                                        });
+                                        .forEach(seatNumber ->
+                                            row.getSeats()
+                                                    .add(new Seat(UUID.randomUUID().toString(),
+                                                            String.valueOf(seatNumber),row)));
                             });
                 });
         salon.getSections().stream().flatMap(section -> section.getRows().stream())
@@ -104,7 +101,5 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                     })
                 );
         System.out.println(salon.toJson(objectMapper));
-
-
     }
 }
