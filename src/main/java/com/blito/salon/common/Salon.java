@@ -12,8 +12,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Salon extends AbstractBaseSalonEntity implements SalonComponent<Salon> {
+    private String address;
+    private Double longitude;
+    private Double latitude;
     private Integer numberOfSections;
     private List<Section> sections;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
 
     public List<Section> getSections() {
         return sections;
@@ -23,9 +50,12 @@ public class Salon extends AbstractBaseSalonEntity implements SalonComponent<Sal
         this.sections = sections;
     }
 
-    public Salon(String uid, String name) {
+    public Salon(String uid, String name,String address,Double longitude,Double latitude) {
         super(uid, name);
         sections = new ArrayList<>();
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
     }
 
     public Salon() {

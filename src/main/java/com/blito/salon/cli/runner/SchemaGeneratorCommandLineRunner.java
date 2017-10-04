@@ -25,7 +25,16 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
         System.out.println("Enter salon name");
         String salonName = scanner.nextLine();
 
-        Salon salon = new Salon(UUID.randomUUID().toString(),salonName);
+        System.out.println("Enter salon address");
+        String salonAddress = scanner.nextLine();
+
+        System.out.println("Enter salon latitude");
+        Double latitude = scanner.nextDouble();
+
+        System.out.println("Enter salon longitude");
+        Double longitude = scanner.nextDouble();
+
+        Salon salon = new Salon(UUID.randomUUID().toString(),salonName,salonAddress,longitude,latitude);
 
         System.out.println("Please enter number of sections");
         Try<Integer> numberOfSectionsTry = Try.of(scanner::nextInt);
