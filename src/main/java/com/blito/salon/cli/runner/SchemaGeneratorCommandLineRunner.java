@@ -84,7 +84,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
 
                                 Integer numberOfSeats = numberOfSeatsTry.get();
                                 Integer firstSeatStartingNumber = firstSeatStartingNumberTry.get();
-                                Integer lastSeatEndingNumber = firstSeatStartingNumber + numberOfSeats;
+                                Integer lastSeatEndingNumber = firstSeatStartingNumber + numberOfSeats -1;
                                 Row row = new Row(UUID.randomUUID().toString(),
                                         rowName,
                                         section,
