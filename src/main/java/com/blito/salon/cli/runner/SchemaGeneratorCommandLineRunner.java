@@ -82,6 +82,14 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                                     numberOfSeatsTry = Try.of(scanner::nextInt);
                                 }
 
+                                System.out.println("Enter direction (LTR RTL)");
+                                Try<Direction> directionTry = Try.of(scanner::next).map(direction -> Enum.valueOf(Direction.class,direction));
+                                while (directionTry.isFailure()) {
+                                    scanner.next();
+                                    System.out.println("Enter LTR or RTL");
+                                    directionTry = Try.of(scanner::next).map(direction -> Enum.valueOf(Direction.class,direction));
+                                }
+
                                 Integer numberOfSeats = numberOfSeatsTry.get();
                                 Integer firstSeatStartingNumber = firstSeatStartingNumberTry.get();
                                 Integer lastSeatEndingNumber = firstSeatStartingNumber + numberOfSeats -1;
@@ -90,7 +98,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
                                         section,
                                         numberOfSeats,
                                         firstSeatStartingNumber,
-                                        lastSeatEndingNumber, Direction.LTR);
+                                        lastSeatEndingNumber, directionTry.get());
 
                                 section.getRows().add(row);
 
