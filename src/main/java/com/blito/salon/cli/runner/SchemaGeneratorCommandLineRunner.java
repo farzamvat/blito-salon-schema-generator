@@ -102,7 +102,7 @@ public class SchemaGeneratorCommandLineRunner implements CommandLineRunner {
 
                                 section.getRows().add(row);
 
-                                IntStream.range(firstSeatStartingNumber,lastSeatEndingNumber)
+                                IntStream.range(firstSeatStartingNumber,lastSeatEndingNumber+1)
                                         .forEach(seatNumber ->
                                             row.getSeats()
                                                     .add(new Seat(UUID.randomUUID().toString(),
